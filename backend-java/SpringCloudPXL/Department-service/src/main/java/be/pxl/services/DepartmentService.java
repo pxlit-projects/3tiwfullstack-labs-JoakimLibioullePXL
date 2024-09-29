@@ -1,5 +1,6 @@
 package be.pxl.services;
 
+import be.pxl.domain.Department;
 import be.pxl.domain.Employee;
 import be.pxl.domain.dto.DepartmentRequest;
 import be.pxl.domain.dto.DepartmentResponse;
@@ -16,26 +17,47 @@ public class DepartmentService implements IDepartmentService{
     private final EmployeeRepository employeeRepository;
     @Override
     public void add(DepartmentRequest departmentRequest) {
-        
+        departmentRepository.save(mapToDepartment(departmentRequest));
     }
 
     @Override
     public DepartmentResponse findById(Long id) throws Exception {
-        return null;
+
+        return mapToDepartmentResponse(departmentRepository.findById(id).orElseThrow(() -> new Exception("Department with ID:" + id + " doesn't exist.")));
     }
 
     @Override
     public List<DepartmentResponse> findAll() {
-        return null;
+        List<Department> departments = departmentRepository.findAll();
+        return departments.stream().map(this::mapToDepartmentResponse).toList();
     }
 
     @Override
     public DepartmentResponse findByOrganization(Long organizationId) {
-        return null;
+        return departmentRepository.findByOrganizationId(organizationId);
     }
 
     @Override
     public DepartmentResponse findByOrganizationWithEmployees(Long organisationId, List<Employee> employees) {
-        return null;
+        return departmentRepository.findByOrganizationWithEmployees(organisationId, employees);
+    }
+
+    private Department mapToDepartment(DepartmentRequest departmentRequest){
+        return Department.builder()
+                .name(departmentRequest.getName())
+                .employees(departmentRequest.getEmployees())
+                .position(departmentRequest.getPosition())
+                .organizationId(departmentRequest.getOrganizationId())
+                .build();
+    }
+
+    private DepartmentResponse mapToDepartmentResponse(Department department){
+        return DepartmentResponse.builder()
+                .id(department.getId())
+                .position(department.getPosition())
+                .employees(department.getEmployees())
+                .organizationId(department.getOrganizationId())
+                .name(department.getName())
+                .build();
     }
 }
