@@ -26,7 +26,9 @@
 		<module>Department-service</module>
         <module>organization-service</module>
         <module>notification-service</module>
-    </modules>
+        <module>discovery-service</module>
+		<module>config-service</module>
+	</modules>
 	<scm>
 		<connection/>
 		<developerConnection/>
