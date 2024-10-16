@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IOrganizationService {
     OrganizationResponse findById(Long id) throws Exception;
-    OrganizationResponse findByIdWithDepartments(Long id, List<Department> departments);
-    OrganizationResponse findByIdWithDepartmentsAndEmployees(Long id, List<Department> departments, List<Employee> employees);
-    OrganizationResponse findByIdWithEmployees(Long id, List<Employee> employees);
+    OrganizationResponse findByIdAndDepartmentsIn(Long id, List<Department> departments);
+    OrganizationResponse findByIdAndDepartmentsInAndEmployeesIn(Long id, List<Department> departments, List<Employee> employees);
+    OrganizationResponse findByIdAndEmployeesIn(Long id, List<Employee> employees);
 }

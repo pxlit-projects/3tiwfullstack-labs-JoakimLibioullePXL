@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
     DepartmentResponse findByOrganizationId(Long organisationId);
-    DepartmentResponse findByOrganizationWithEmployees(Long organisationId, List<Employee> employees);
+    DepartmentResponse findByOrganizationIdAndEmployees(Long organisationId, List<Employee> employees);
 }

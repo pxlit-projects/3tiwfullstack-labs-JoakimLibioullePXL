@@ -19,42 +19,38 @@ public class OrganizationController {
     private final IOrganizationService organizationService;
 
     @GetMapping("{id}")
-    public ResponseEntity findById(@PathVariable Long id) throws Exception {
-        try{
-            return new ResponseEntity(organizationService.findById(id), HttpStatus.OK);
-        }catch (Exception e){
+    public ResponseEntity<OrganizationResponse> findById(@PathVariable Long id) throws Exception {
+        try {
+            return new ResponseEntity<>(organizationService.findById(id), HttpStatus.OK);
+        } catch (Exception e) {
             throw new RuntimeException(e);
-
         }
     }
 
     @GetMapping("{id}/with-departments")
-    public ResponseEntity findByIdWithDepartments(@PathVariable Long id, @RequestBody List<Department> departments) throws Exception {
-        try{
-            return new ResponseEntity(organizationService.findByIdWithDepartments(id, departments), HttpStatus.OK);
-        }catch (Exception e){
+    public ResponseEntity<OrganizationResponse> findByIdWithDepartments(@PathVariable Long id, @RequestBody List<Department> departments) throws Exception {
+        try {
+            return new ResponseEntity<>(organizationService.findByIdAndDepartmentsIn(id, departments), HttpStatus.OK);
+        } catch (Exception e) {
             throw new RuntimeException(e);
-
         }
     }
 
     @GetMapping("{id}/with-departments-and-employees")
-    public ResponseEntity findByIdWithDepartmentsAndEmployees(@PathVariable Long id, @RequestBody List<Department> departments, @RequestBody List<Employee> employees) throws Exception {
-        try{
-            return new ResponseEntity(organizationService.findByIdWithDepartmentsAndEmployees(id, departments, employees), HttpStatus.OK);
-        }catch (Exception e){
+    public ResponseEntity<OrganizationResponse> findByIdWithDepartmentsAndEmployees(@PathVariable Long id, @RequestBody List<Department> departments, @RequestBody List<Employee> employees) throws Exception {
+        try {
+            return new ResponseEntity<>(organizationService.findByIdAndDepartmentsInAndEmployeesIn(id, departments, employees), HttpStatus.OK);
+        } catch (Exception e) {
             throw new RuntimeException(e);
-
         }
     }
 
-    @GetMapping("{id}/with-departments")
-    public ResponseEntity findByIdWithEmployees(@PathVariable Long id, @RequestBody List<Employee> employees) throws Exception {
-        try{
-            return new ResponseEntity(organizationService.findByIdWithEmployees(id, employees), HttpStatus.OK);
-        }catch (Exception e){
+    @GetMapping("{id}/with-employees") // Unieke mapping voor deze methode
+    public ResponseEntity<OrganizationResponse> findByIdWithEmployees(@PathVariable Long id, @RequestBody List<Employee> employees) throws Exception {
+        try {
+            return new ResponseEntity<>(organizationService.findByIdAndEmployeesIn(id, employees), HttpStatus.OK);
+        } catch (Exception e) {
             throw new RuntimeException(e);
-
         }
     }
 }

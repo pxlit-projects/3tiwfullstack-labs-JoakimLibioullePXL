@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.4</version>
+		<version>3.2.6</version> <!-- Versie veranderd naar 3.2.6 -->
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>be.pxl.services</groupId>
@@ -23,13 +23,13 @@
 	</developers>
 	<modules>
 		<module>employee2-service</module>
-		<module>Department-service</module>
-        <module>organization-service</module>
-        <module>notification-service</module>
-        <module>discovery-service</module>
+		<module>department-service</module>
+		<module>organization-service</module>
+		<module>notification-service</module>
+		<module>discovery-service</module>
 		<module>config-service</module>
-        <module>gateway-service</module>
-    </modules>
+		<module>gateway-service</module>
+	</modules>
 	<scm>
 		<connection/>
 		<developerConnection/>
@@ -38,7 +38,9 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
-		<spring.cloud-version>2023.0.0</spring.cloud-version>
+		<spring-cloud.version>2023.0.0</spring-cloud.version> <!-- Correcte Spring Cloud versie -->
+		<lombok.version>1.18.28</lombok.version> <!-- Versie voor Lombok -->
+		<spring-boot-starter-test.version>3.3.4</spring-boot-starter-test.version> <!-- Versie voor Spring Boot Test -->
 	</properties>
 
 	<dependencyManagement>
@@ -46,7 +48,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring.cloud-version}</version>
+				<version>${spring-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -68,11 +70,13 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version> <!-- Toegevoegde versie voor Lombok -->
 			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<version>${spring-boot-starter-test.version}</version> <!-- Toegevoegde versie voor Spring Boot Test -->
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

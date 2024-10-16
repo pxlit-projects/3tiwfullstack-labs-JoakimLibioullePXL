@@ -39,7 +39,7 @@ public class DepartmentService implements IDepartmentService{
 
     @Override
     public DepartmentResponse findByOrganizationWithEmployees(Long organisationId, List<Employee> employees) {
-        return departmentRepository.findByOrganizationWithEmployees(organisationId, employees);
+        return departmentRepository.findByOrganizationIdAndEmployees(organisationId, employees);
     }
 
     private Department mapToDepartment(DepartmentRequest departmentRequest){

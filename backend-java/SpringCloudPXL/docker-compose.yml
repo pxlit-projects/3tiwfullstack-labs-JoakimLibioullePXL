@@ -9,7 +9,7 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: gast
       RABBITMQ_DEFAULT_PASS: gast
-  e-commerce_service_db:
+  springcloudpxl_service_db:
     image: mysql:latest
     ports:
       - "3306:3306"

@@ -20,18 +20,18 @@ public class OrganizationService implements IOrganizationService{
     }
 
     @Override
-    public OrganizationResponse findByIdWithDepartments(Long id, List<Department> departments) {
-        return organizationRepository.findByIdWithDepartments(id, departments);
+    public OrganizationResponse findByIdAndDepartmentsIn(Long id, List<Department> departments) {
+        return organizationRepository.findByIdAndDepartmentsIn(id, departments);
     }
 
     @Override
-    public OrganizationResponse findByIdWithDepartmentsAndEmployees(Long id, List<Department> departments, List<Employee> employees) {
-        return organizationRepository.findByIdWithDepartmentsAndEmployees(id, departments, employees);
+    public OrganizationResponse findByIdAndDepartmentsInAndEmployeesIn(Long id, List<Department> departments, List<Employee> employees) {
+        return organizationRepository.findByIdAndDepartmentsInAndEmployeesIn(id, departments, employees);
     }
 
     @Override
-    public OrganizationResponse findByIdWithEmployees(Long id, List<Employee> employees) {
-        return organizationRepository.findByIdWithEmployees(id, employees);
+    public OrganizationResponse findByIdAndEmployeesIn(Long id, List<Employee> employees) {
+        return organizationRepository.findByIdAndEmployeesIn(id, employees);
     }
 
     private OrganizationResponse mapToOrganizationResponse(Organization organization){
